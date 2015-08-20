@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.test.nfc">
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:allowTaskReparenting="true"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:taskAffinity=":nfc">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity-alias
+            android:name="NFCUtils-alias"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="tel" />
+                <data android:scheme="mailto" />
+                <data android:scheme="ftp" />
+                <data android:scheme="ftps" />
+                <data android:scheme="sftp" />
+                <data android:scheme="smb" />
+                <data android:scheme="nfs" />
+                <data android:scheme="dav" />
+                <data android:scheme="news" />
+                <data android:scheme="telnet" />
+                <data android:scheme="imap" />
+                <data android:scheme="rtsp" />
+                <data android:scheme="urn" />
+                <data android:scheme="pop" />
+                <data android:scheme="sip" />
+                <data android:scheme="sips" />
+                <data android:scheme="tftp" />
+                <data android:scheme="btspp" />
+                <data android:scheme="btl2cap" />
+                <data android:scheme="btgoep" />
+                <data android:scheme="tcpobex" />
+                <data android:scheme="irdaobex" />
+                <data android:scheme="file" />
+                <data android:scheme="urn:epc:id" />
+                <data android:scheme="urn:epc:tag" />
+                <data android:scheme="urn:epc:pat" />
+                <data android:scheme="urn:epc:raw" />
+                <data android:scheme="urn:epc" />
+                <data android:scheme="urn:nfc" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_supported_technologies" />
+        </activity-alias>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="64d505421ef6fa71772afc4b19b259643e53e1f1" />
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
